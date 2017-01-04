@@ -15,11 +15,9 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-app = Flask(__name__)
+app = Flask("awesome_wiki")
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
-
-# app.config['SECRET_KEY'] = '123456'
 
 DBUSER=os.environ.get('DBUSER', True)
 DBPASS=os.environ.get('DBPASS', True)
