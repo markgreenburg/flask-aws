@@ -4,7 +4,7 @@ Main routes and app configs file for wiki
 
 import sys
 import os
-from flask import Flask, Markup, render_template, request, redirect, flash, session
+from flask import Flask, Markup, render_template, request, redirect, flash, session, url_for
 from flask_breadcrumbs import Breadcrumbs, register_breadcrumb
 import models
 from wiki_linkify import wiki_linkify
@@ -62,9 +62,9 @@ def submit_login():
     user = models.User.get_user(entered_username)
     if user.password == entered_password:
         session['username'] = user.username
-        return redirect("/")
+        return redirect(url_for('homepage'))
     flash("Incorrect username or password")
-    return redirect("/login")
+    return redirect(url_for('login'))
 
 @app.route("/logout")
 def logout():
@@ -72,7 +72,7 @@ def logout():
     Logs out current user by deleting their username from the session
     """
     del session['username']
-    return redirect("/")
+    return redirect(url_for('homepage'))
 
 @app.route("/new_page")
 @register_breadcrumb(app, '.new_page', 'Add Page')
@@ -83,7 +83,7 @@ def new_page():
     if 'username' in session:
         return render_template("new_page.html", page=models.Page())
     flash("You must be logged in to add a page")
-    return redirect("/login")
+    return redirect(url_for('login'))
 
 @app.route("/new_page_save", methods=["POST"])
 def insert_page():
@@ -96,7 +96,7 @@ def insert_page():
     page.modified_by = session['username']
     page.save()
     flash("Page '%s' created successfully" % page.title)
-    return redirect("/")
+    return redirect(url_for('homepage'))
 
 @app.route("/view/<int:page_id>")
 @register_breadcrumb(app, '.view', 'View Page')
@@ -126,7 +126,7 @@ def edit_page(page_id):
                                title=page.title, content=page.content,\
                                modified_by=page.modified_by)
     flash("You must be logged in to edit a page")
-    return redirect("/login")
+    return redirect(url_for('login'))
 
 @app.route("/edit_page_save/<int:page_id>", methods=["POST"])
 def update_page(page_id):
@@ -139,7 +139,7 @@ def update_page(page_id):
     page.modified_by = session['username']
     page.save()
     flash("Page '%s' updated successfully" % page.title)
-    return redirect("/")
+    return redirect(url_for('homepage'))
 
 @app.route("/delete/<int:page_id>")
 def delete_page(page_id):
@@ -151,9 +151,9 @@ def delete_page(page_id):
         page.set_delete()
         flash("Page '%s' deleted successfully. <a href='/undelete/%d'>Undo</a>"\
          % (page.title, page.page_id))
-        return redirect("/")
+        return redirect(url_for('homepage'))
     flash("You must be logged in to delete a page")
-    return redirect("/login")
+    return redirect(url_for('login'))
 
 @app.route("/undelete/<int:page_id>")
 def undelete_page(page_id):
@@ -163,7 +163,7 @@ def undelete_page(page_id):
     page = models.Page(page_id)
     page.set_delete(False)
     flash("Page '%s' restored successfully." % page.title)
-    return redirect("/")
+    return redirect(url_for('homepage'))
 
 @app.route("/history/<int:page_id>")
 @register_breadcrumb(app, '.view.history', 'Revision History')
@@ -177,7 +177,7 @@ def show_history(page_id):
         return render_template("history.html", page_list=page_list, \
         title="Revision History: %s" % current_version.title)
     flash("You must be logged in to view revision history")
-    return redirect("/login")
+    return redirect(url_for('login'))
 
 @app.route("/rollback/<int:revision_id>")
 def rollback(revision_id):
@@ -193,7 +193,7 @@ def rollback(revision_id):
     overwrite_with.deleted = pull_from.deleted
     overwrite_with.save()
     flash("Page %s rolled back successfully." % overwrite_with.title)
-    return redirect("/")
+    return redirect(url_for('homepage'))
 
 #####
 # Helper routes
