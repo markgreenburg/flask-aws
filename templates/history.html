@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row">
+  <h3 class="text-center">{{title}}</h3>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-12">
+    <table class="table table-striped">
+      <thead>
+        <th>
+          Page Name
+        </th>
+        <th>
+          Content
+        </th>
+        <th>
+          Last Modified
+        </th>
+        <th>
+          Modified By
+        </th>
+        <th>
+          Roll Back
+        </th>
+      </thead>
+      <tbody>
+        {% for entry in page_list: %}
+        <tr>
+          <td>
+            {{entry.title}}
+          </td>
+          <td>
+            {{entry.content}}
+          </td>
+          <td>
+            {{entry.last_modified}}
+          </td>
+          <td>
+            {{entry.modified_by}}
+          </td>
+          <td>
+            <a href="/rollback/{{entry.revision_id}}">Set As Current Version</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

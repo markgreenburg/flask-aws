@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-12 page_title text-center">
+    <h3>{{title}}</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="page_content col-md-9 col-sm-12">
+    {{content | safe}}
+  </div>
+  <div class="col-md-3 col-sm-12 page_info">
+    <div>
+      Last Modified: {{last_modified}}
+    </div>
+    <div>
+      Modified By: {{modified_by}}
+    </div>
+    <div>
+      <a href="/edit/{{page_id}}">Edit Page</a>
+    </div>
+    <div>
+      <a href="/history/{{page_id}}">View Revision History</a>
+    </div>
+    <div>
+      <a href="/delete/{{page_id}}">Delete Page</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

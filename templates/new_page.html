@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-12">
+    <form class="form" action="/new_page_save" method="POST">
+      <div class="form-group">
+        <input type="text" name="title", size="70", placeholder="Page Title" required/><br />
+        <textarea name="content" rows="20" cols="72" minlength="150" required></textarea><br />
+      </div>
+      <button type="submit" class="btn btn-defualt">Create Page</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

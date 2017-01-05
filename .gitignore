@@ -1,5 +1,7 @@
 # Virtualenv
 env
+.env
+venv
 .Python
 include
 lib
@@ -32,5 +34,8 @@ pip-log.txt
 *.[oa]
 *.py[co]
 *.rbc
+*.pyc
+staticfiles
 
-.env
+# Configs
+config.py

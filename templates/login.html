@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        <form class="form" action="/submit_login" method="POST">
+            <div class="form-group">
+                <input type="text" name="username" size="45" placeholder="username" required><br />
+                <input type="password" name="password" size="45" placeholder="password" required><br />
+            </div>
+            <button type="submit" class="btn btn-default">Log In</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

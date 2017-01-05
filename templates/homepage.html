@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row page_title">
+  <h3 class="text-center">{{title}}</h3>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>
+            Page
+          </th>
+          <th>
+            Last Modified
+          </th>
+          <th>
+            Modified By
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in page_list: %}
+        <tr>
+          <td>
+            <a href="/view/{{entry.page_id}}">{{entry.title}}</a>
+          </td>
+          <td>
+            {{entry.last_modified}}
+          </td>
+          <td>
+            {{entry.modified_by}}
+          </td>
+          <td>
+            <a href="/delete/{{entry.page_id}}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

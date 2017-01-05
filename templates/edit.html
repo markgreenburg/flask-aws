@@ -1,0 +1,15 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+<div class="row">
+  <div class="col-md-12">
+    <form class="form" action="/edit_page_save/{{page_id}}" method="POST">
+      <div class="form-group">
+        <input type="text" name="title" size="70" value="{{title}}" required/><br />
+        <textarea name="content" rows="20" cols="72" minlength="150" required>{{content}}</textarea><br />
+      </div>
+      <button type="submit" class="btn btn-default">Submit Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
