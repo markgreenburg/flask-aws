@@ -212,15 +212,15 @@ def send_text_file(file_name):
     file_dot_text = file_name + '.txt'
     return app.send_static_file(file_dot_text)
 
-@app.after_request
-def add_header(response):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=600'
-    return response
+# @app.after_request
+# def add_header(response):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+#     response.headers['Cache-Control'] = 'public, max-age=600'
+#     return response
 
 if __name__ == '__main__':
     app.run(debug=True)
