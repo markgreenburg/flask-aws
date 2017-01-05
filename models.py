@@ -1,9 +1,9 @@
 """
 CRUD & related models for our wiki app
 """
+import os
 from time import strftime
 import pg
-import config
 
 class User(object):
     """
@@ -243,10 +243,10 @@ class Database(object):
         Sets up the postgreSQL connection. Uses settings from the config file.
         """
         return pg.DB(
-            host=config.host,
-            user=config.user_name,
-            passwd=config.password,
-            dbname=config.database
+            host=os.environ.get('DBHOST', True),
+            user=os.environ.get('DBUSER', True),
+            passwd=os.environ.get('DBPASS', True),
+            dbname=os.environ.get('DBNAME', True)
             )
 
     @staticmethod

@@ -3,6 +3,7 @@ Main routes and app configs file for wiki
 """
 
 import sys
+import os
 from flask import Flask, Markup, render_template, request, redirect, flash, \
 session
 from flask_breadcrumbs import Breadcrumbs, register_breadcrumb
@@ -16,7 +17,7 @@ import markdown
 reload(sys)
 sys.setdefaultencoding('utf8')
 app = Flask("awesome_wiki")
-app.config.from_object('config')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Breadcrumbs(app=app)
 
 #####
