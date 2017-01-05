@@ -13,9 +13,6 @@ mock
 # ----------------------
 # Production Server
 # ----------------------
-gevent
-gunicorn
-PyGreSQL==5.0.3
 altgraph==0.10.2
 astroid==1.4.8
 backports-abc==0.5
@@ -94,7 +91,6 @@ pytz==2013.7
 scipy==0.13.0b1
 singledispatch==3.4.0.3
 six==1.10.0
-SQLAlchemy==1.1.4
 tornado==4.4.2
 virtualenv==15.1.0
 Werkzeug==0.11.15
