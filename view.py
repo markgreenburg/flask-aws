@@ -4,8 +4,7 @@ Main routes and app configs file for wiki
 
 import sys
 import os
-from flask import Flask, Markup, render_template, request, redirect, flash, \
-session
+from flask import Flask, Markup, render_template, request, redirect, flash, session
 from flask_breadcrumbs import Breadcrumbs, register_breadcrumb
 import models
 from wiki_linkify import wiki_linkify
@@ -109,10 +108,10 @@ def show_page(page_id):
     page.content = wiki_linkify(page.content)
     page.content = Markup(markdown.markdown(page.content))
     return render_template("view.html", page_id=page.page_id, \
-                           title=page.title, \
-                           content=page.content,\
-                           last_modified=page.last_modified,\
-                           modified_by=page.modified_by)
+                        title=page.title, \
+                        content=page.content,\
+                        last_modified=page.last_modified,\
+                        modified_by=page.modified_by)
 
 @app.route("/edit/<int:page_id>", methods=["GET"])
 @register_breadcrumb(app, '.view.edit', 'Edit Page')
@@ -199,6 +198,14 @@ def rollback(revision_id):
 #####
 # Helper routes
 #####
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    Displays 404 template on error
+    """
+    return render_template('404.html'), 404
+
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
     """Send your static text file."""
