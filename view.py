@@ -72,8 +72,9 @@ def logout():
     Logs out current user by deleting their username from the session
     """
     del session['username']
-    print session.get('username')
+    print 'about to delete session username...'
     return redirect(url_for('homepage'))
+    print 'session username %s deleted' % session.get('username')
 
 @app.route("/new_page")
 @register_breadcrumb(app, '.new_page', 'Add Page')
@@ -220,7 +221,7 @@ def add_header(response):
     and also to cache the rendered page for 10 minutes.
     """
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=600'
+    response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
 if __name__ == '__main__':
