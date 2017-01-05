@@ -40,7 +40,6 @@ def submit_search():
     Posts search form contents and redirects to a results page.
     """
     search_query = request.args.get("search_string")
-    print search_query
     page_list = models.Page.find_pages(search_query)
     return render_template("homepage.html", page_list=page_list, \
     title="Search Results")
