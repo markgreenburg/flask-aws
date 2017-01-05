@@ -72,6 +72,7 @@ def logout():
     Logs out current user by deleting their username from the session
     """
     del session['username']
+    print session.get('username')
     return redirect(url_for('homepage'))
 
 @app.route("/new_page")
