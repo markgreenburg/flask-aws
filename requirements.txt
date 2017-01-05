@@ -14,7 +14,6 @@ mock
 # Production Server
 # ----------------------
 Flask-Breadcrumbs==0.4.0
-Flask-SQLAlchemy==2.1
 gevent==1.2.0
 gunicorn==19.6.0
 Jinja2==2.8.1

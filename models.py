@@ -80,7 +80,6 @@ class Page(object):
                       Database.escape(self.modified_by)
                                          )
         self.page_id = result_list[0].id
-        print "PAGE ID IS: %s" % self.page_id
         return self.page_id
 
     def update(self):

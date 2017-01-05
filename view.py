@@ -28,7 +28,6 @@ def homepage():
     """
     Directory of all pages in the wiki
     """
-    print session.get('username', 'not set')
     page_list = models.Page.get_pages()
     return render_template("homepage.html", page_list=page_list, \
     title="Page Index")
@@ -72,9 +71,7 @@ def logout():
     Logs out current user by deleting their username from the session
     """
     del session['username']
-    print 'about to delete session username...'
     return redirect(url_for('homepage'))
-    print 'session username %s deleted' % session.get('username')
 
 @app.route("/new_page")
 @register_breadcrumb(app, '.new_page', 'Add Page')
