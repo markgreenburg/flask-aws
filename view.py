@@ -59,7 +59,7 @@ def submit_login():
     entered_username = request.form.get('username')
     entered_password = request.form.get('password')
     user = models.User.get_user(entered_username)
-    if user.password == entered_password:
+    if user and user.password == entered_password:
         session['username'] = user.username
         return redirect(url_for('homepage'))
     flash("Incorrect username or password")

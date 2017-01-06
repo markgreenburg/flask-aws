@@ -27,12 +27,16 @@ class User(object):
     @staticmethod
     def get_user(username):
         """
-        finds user by username and returns that user's object.
+        finds user by username and returns that user's object. Returns
+        False if no user is found.
         """
         sql = "SELECT id FROM users WHERE username=$1"
         user_id_list = Database.get_result(sql, username)
-        user_id = user_id_list[0].id
-        user = User(user_id)
+        if user_id_list:
+            user_id = user_id_list[0].id
+            user = User(user_id)
+        else:
+            user = False
         return user
 
 class Page(object):
@@ -265,6 +269,7 @@ class Database(object):
         """
         conx = Database.get_connection()
         query = conx.query(query, *args)
+        print query
         result_list = query.namedresult()
         conx.close()
         return result_list
