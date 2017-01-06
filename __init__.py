@@ -15,7 +15,7 @@ import markdown
 #####
 reload(sys)
 sys.setdefaultencoding('utf8')
-app = Flask("awesome_wiki")
+app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Breadcrumbs(app=app)
 
@@ -221,5 +221,5 @@ def add_header(response):
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
