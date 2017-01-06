@@ -36,6 +36,8 @@ ul.flashes li {
 
 table.table-striped {
   border: 1px solid rgb(231, 231, 231);
+  margin-bottom: 80px;
+
 }
 
 div div ol.breadcrumb {
