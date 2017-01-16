@@ -14,7 +14,7 @@ import markdown
 # app configs: default app encoding, app name, specify config file, load Breadcrumbs import
 #####
 reload(sys)
-sys.setdefaultencoding('utf8')
+sys.setdefaultencoding('utf-8')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Breadcrumbs(app=app)
